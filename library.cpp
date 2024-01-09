@@ -12,7 +12,7 @@ using namespace std;
 
 void addMember(vector<Member> &arr)
  {
-    Member Member;
+    
     ofstream file("Member.txt");
     cout << "Enter member ID: ";
     int memberID;
@@ -23,9 +23,17 @@ void addMember(vector<Member> &arr)
     }
 
     cout << "Enter member name: ";
-    string name;
+    std::string name;
     cin >> name;
 
-    members.push_back(Member{memberID, name, vector<Book>()});
+    cout << "Enter member address: ";
+    std::string address;
+    cin >> address;
+
+    cout << "Enter member name: ";
+    std::string name;
+    cin >> name;
+
+    arr.emplace_back(memberID, name);
     cout << "Member added successfully." << endl;
 }

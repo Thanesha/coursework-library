@@ -8,12 +8,14 @@
 #include <map>
 
 using namespace std;
-struct Person 
+class Person 
 {
-
+private:
     std::string name;
     std::string address;
     std::string email;
+
+public:
     Person(std::string name, std::string address, std::string email) : name(name), address(address), email(email) {}
 
     std::string getName() { return name; }
