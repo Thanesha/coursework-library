@@ -8,14 +8,12 @@
 #include <map>
 
 using namespace std;
-class Person 
+struct Person 
 {
-private:
+
     std::string name;
     std::string address;
     std::string email;
-
-public:
     Person(std::string name, std::string address, std::string email) : name(name), address(address), email(email) {}
 
     std::string getName() { return name; }
@@ -42,7 +40,6 @@ public:
 
     std::vector<Book> getBooksBorrowed() { return booksLoaned; }
     void setBooksBorrowed(Book book) { booksLoaned.push_back(book); }
-
     void returnBook(Book book) {
         for (int i = 0; i < booksLoaned.size(); i++) {
             if (booksLoaned[i].getBookID() == book.getBookID()) {
