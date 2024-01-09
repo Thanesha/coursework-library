@@ -1,13 +1,15 @@
 #ifndef _LIBRARY_H_ 
 #define _LIBRARY_H_ 
 
-#include <iostream>
+#include <string>
 #include <vector>
 #include <ctime>
 #include <sstream>
 #include <map>
+
 using namespace std;
-class Person {
+class Person 
+{
 private:
     std::string name;
     std::string address;
@@ -25,21 +27,18 @@ public:
     std::string getEmail() { return email; }
     void setEmail(std::string email) { this->email = email; }
 };
-class Member : public Person 
+class Member : public Person
 {
 private:
     int memberID;
     std::vector<Book> booksLoaned;
 
 public:
-    Member(int memberID, std::string name, std::string address, std::string email) : Person(name, address, email), memberID(memberID) {}
+    Member(int memberID, std::string name, std::string address, 
+    std::string email) : Person(name, address, email), memberID(memberID) {}
 
     int getMemberID() { return memberID; }
-        void addMember() {}
-        void issueBook(int bookID, int memberID) {}
-        void returnBook(int bookID, int memberID) {}
-        void displayBorrowedBooks() {}
-        void calcFine(int memberID) {}
+    
 
     std::vector<Book> getBooksBorrowed() { return booksLoaned; }
     void setBooksBorrowed(Book book) { booksLoaned.push_back(book); }
@@ -81,16 +80,24 @@ class Librarian : public Person
     private:
         int staffID;
         int salary;
+
     public:
-        Librarian(int staffID, std::string name, std::string address, std::string email, int salary);
+        Librarian(int staffID, std::string name, std::string address,
+         std::string email, int salary) : Person(name, address, email), staffID(staffID), salary(salary) {}
+        
+        void addMember() {}
+        void issueBook(int bookID, int memberID) {}
+        void returnBook(int bookID, int memberID) {}
+        void displayBorrowedBooks(int memberID) {}
+        void calcFine(int memberID) {}
 
         int getStaffID();
         void setStaffID(int staffID);
 
         int getSalary();
-        void setSalary(int salary);
+        void setsalary(int salary);
 };
-class Book : public Member
+class Book  
 {
 private:
     int bookID;
@@ -103,7 +110,7 @@ private:
 public:
     Book(int bookID, std::string bookName, std::string authorFirstName, std::string authorLastName) : bookID(bookID), bookName(bookName), authorFirstName(authorFirstName), 
      authorLastName(authorLastName) {}
-    borrowerBook()
+
     int getBookID() { return bookID; }
     std::string getBookName() { return bookName; }
 
