@@ -12,7 +12,7 @@ private:
 
 public:
     Person(std::string name, std::string address, std::string email) : name(name), address(address), email(email) {}
-    
+    Person(){}
     Person(details *array);
     virtual ~Person();
 

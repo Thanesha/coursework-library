@@ -14,7 +14,7 @@ private:
 public:
     Member(std::string memberID, std::string name, std::string address, 
     std::string email) : Person(name, address, email), memberID(memberID) {}
-
+    Member(){}
     Member(details *array);
     
 

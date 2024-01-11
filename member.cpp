@@ -6,7 +6,7 @@
 
 Member::Member(std::string memberID, std::string name, std::string address, 
     std::string email) : Person(name, address, email), memberID(memberID) {}
-
+Member::Member(){}
 Member::Member(details *array) : Person(array)
 {
     setName(array->name);

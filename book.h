@@ -20,9 +20,9 @@ private:
     Member *borrower;
 
 public:
-Book(int bookID, std::string bookName, std::string authorFirstName, std::string authorLastName) : bookID(bookID), bookName(bookName), authorFirstName(authorFirstName), authorLastName(authorLastName)
+ Book(int bookID, std::string bookName, std::string authorFirstName, std::string authorLastName) : bookID(bookID), bookName(bookName), authorFirstName(authorFirstName), authorLastName(authorLastName)
  {}
-
+ Book(){}
     int getBookID() { return bookID; }
     std::string getBookName() { return bookName; }
 

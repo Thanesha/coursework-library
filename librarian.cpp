@@ -3,7 +3,8 @@
     #include "book.h"
     #include <sstream>
     
-    Librarian:: Librarian(std::string staffID, std::string name, std::string address, std::string email, int salary) : Person(name, address, email), staffID(staffID), salary(salary) {} 
+    Librarian:: Librarian(std::string staffID, std::string name, std::string address, std::string email, int salary) : Person(name, address, email), staffID(staffID), salary(salary) {}
+    Librarian::Librarian(){} 
     void addMember() {} 
     void issueBook(int bookID, int memberID) {}
     void returnBook(int bookID, int memberID) {}

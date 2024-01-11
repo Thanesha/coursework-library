@@ -3,6 +3,7 @@
 
 Book::Book(int bookID, std::string bookName, std::string authorFirstName, std::string authorLastName) : bookID(bookID), bookName(bookName), authorFirstName(authorFirstName), 
      authorLastName(authorLastName) {}
+Book::Book(){}
 void Book::borrowBook(Member *borrower,  std::time_t  dueDate)
 {    this->borrower = borrower;
      this->dueDate = dueDate;

@@ -14,7 +14,7 @@ class Librarian : public Person
     public:
         Librarian(std::string staffID, std::string name, std::string address,
          std::string email, int salary) : Person(name, address, email), staffID(staffID), salary(salary) {}
-
+        Librarian(){}
         std::string getStaffID();
         void setStaffID(std::string staffID);
 

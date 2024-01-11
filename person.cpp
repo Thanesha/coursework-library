@@ -3,7 +3,7 @@
 
 //constructor 
 Person::Person(std::string name, std::string address, std::string email) : name(name), address(address), email(email) {}
-
+Person::Person(){}
 Person::Person(details *array)
 {
     setName(array->name);
