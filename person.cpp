@@ -4,6 +4,12 @@
 //constructor 
 Person::Person(std::string name, std::string address, std::string email) : name(name), address(address), email(email) {}
 
+Person::Person(details *array)
+{
+    setName(array->name);
+    setAddress(array->address);
+    setEmail(array->email);
+}
 Person::~Person(){} // deconstructor
 
 //setter functions

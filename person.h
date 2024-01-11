@@ -2,6 +2,7 @@
 #define _PERSON_H_
 
 #include <string>
+#include "details.h"
 class Person 
 {
 private:
@@ -12,14 +13,17 @@ private:
 public:
     Person(std::string name, std::string address, std::string email) : name(name), address(address), email(email) {}
     
+    Person(details *array);
+    virtual ~Person();
+
+
      //setter
-    void setName(std::string name) { this->name = name; } 
-    void setAddress(std::string address) { this->address = address; }
-    void setEmail(std::string email) { this->email = email; }
+    void setName(std::string name); 
+    void setAddress(std::string address);
+    void setEmail(std::string email);
     // getter 
     std::string getName() { return name; } 
     std::string getAddress() { return address; }
     std::string getEmail() { return email; }
-    
 };
 #endif
