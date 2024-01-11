@@ -24,4 +24,3 @@
     void Librarian::setsalary(int salary){
         this->salary=salary;
     }
-
