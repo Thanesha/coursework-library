@@ -15,10 +15,10 @@ using namespace std;
 int currentSize = 0;
 int maxSize = 0;
 
-details *memberDetails;
+Books *BookDetails;
+details *tmpDetails;
 
-
-std::vector<Member *> member;
+std::vector<Book *> book;
 bool checkFile(const std::string &FILENAME)
 {
     std::ifstream myFile(FILENAME);
@@ -38,7 +38,7 @@ bool checkFile(const std::string &FILENAME)
 void size(const std::string &FILENAME)
 {
     number(FILENAME);
-    memberDetails = new details[currentSize];
+    BookDetails = new Books[currentSize];
     loadFile(FILENAME);
 }
 
@@ -63,7 +63,7 @@ void mainMenu(const std::string &FILENAME)
         if (option == "1")
         {
             header("Add Member");
-            addMember();
+            addMember;
         }
         // Issue a book option
         else if (option == "2")
@@ -124,22 +124,48 @@ bool choice(std::string &choice)
         return false;
     }
 }
-void addMember(int memberID, const std::string& name, const std::string& address, const std::string& email) {
-    std::ofstream memberFile;
-    memberFile.open("member.txt", std::ios_base::app);
+void addMember(Person& person) {
+    std::string name;
+    std::string address;
+    std::string email;
+    std::string memberID;
+    cout << "Enter member's name: ";
+    cin >> name;
+    person.setName(name);
+    cout << "Enter member's address: ";
+    cin >> address;
+    person.setAddress(address);
+    cout << "Enter member's email: ";
+    cin >> email;
+    person.setEmail(email);
+    cout << "Enter member's ID: ";
+    cin.ignore();
+    getline(cin, memberID);
+}
+void saveMemberToFile(Member& member,  Person& person, const string& filename) {
+    ofstream outFile(filename);
+    if (outFile.is_open()) {
+        outFile << person.getName()<< endl;
+        outFile << person.getAddress() << endl;
+        outFile << person.getEmail() << endl;
+        outFile << member.getMemberID() << endl;
 
-    if (memberFile.is_open()) {
-        memberFile << memberID << " " << name << " " << address << " "<< email << std::endl;
-        memberFile.close();
-
-        std::cout << "Member ID: " << memberID << std::endl;
-        std::cout << "Name: " << name << std::endl;
-        std::cout << "Address: " << address << std::endl;
-        std::cout << "email: " << email << std::endl;
+        outFile.close();
+        cout << "Member details saved to " << filename << endl;
     } else {
-        std::cout << "Unable to open the file." << std::endl;
+        cout << "Unable to open file " << filename << endl;
     }
 }
+
+
+void displayMemberDetails(Member& member) {
+    cout << "Member name: " << member.getName() << endl;
+    cout << "Member email: " << member.getEmail() << endl;
+    cout << "Member address: " << member.getAddress() << endl;
+    cout << "Member id: " << member.getMemberID() << endl;
+
+}
+
 
 void issueBook(Member *member, Book *book) {
         std::time_t currentTime;
@@ -207,7 +233,7 @@ void displayBorrowedBooks(int memberID) {
     }
 }
 // Function to calculate fine for a single book
- int calculateFine(const std::tm& dueDate, const std::string& today) {
+ int days(std::tm& dueDate, const std::string& today) {
     time_t now = time(0);
     struct tm tstruct;
     char buf[80];
@@ -226,7 +252,7 @@ void displayBorrowedBooks(int memberID) {
 }
 
 // Function to convert date string to time_t
-std::time_t date2time(const std::tm& dueDate) {
+std::time_t date2time(std::tm& dueDate) {
     return std::mktime(&dueDate);
 }
 void calcFine(int memberID) {
@@ -278,7 +304,7 @@ void calcFine(int memberID) {
             if (bookIndex != -1) {
                 std::tm dueDate = {};
                 std::istringstream(bookInfo[bookIndex].second.second) >> std::get_time(&dueDate, "%Y-%m-%d");
-                int fine = calculateFine(dueDate, today);
+                int fine = days(dueDate, today);
                 totalFine += fine;
                 if (fine > 0) {
                     std::cout << bookInfo[bookIndex].second.first << " - " << bookInfo[bookIndex].second.second << " - £" << fine << std::endl;
@@ -292,4 +318,95 @@ void calcFine(int memberID) {
     } else {
         std::cout << "No overdue books." << std::endl;
     }
+}
+
+bool checkBookId(std::string selectedBookid, std::string &BookCategory, int &BookIndex)
+{
+    std::cout << std::endl
+              << "Enter selected Book id: ";
+    std::cin >> selectedBookid;
+    for (int i = 0; i < currentSize; i++)
+    {
+        if (selectedBookid == *(&BookDetails[i].bookID))
+        {
+            BookCategory = *(&BookDetails[i].bookType);
+            BookIndex = i;
+            return true;
+        }
+    }
+    return false;
+}
+
+void listAll()
+{
+    BookArrayToVector();
+
+    int colWidth = 13;
+    char topBottomBorder = '-';
+    char leftRightBorder = '|';
+    char intersectionBorder = '+';
+
+    table(intersectionBorder, topBottomBorder, colWidth);
+
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "Science fiction";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "satire";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "drama";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "action and adventure";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "romance";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "mystry";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "horror";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "health";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "guide";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "diaries";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "comics";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "journals";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "biographies";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "fantasy";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "history";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "science";
+    std::cout << leftRightBorder << std::setfill(' ') << std::left << std::setw(colWidth) << "art"
+
+    << leftRightBorder;
+
+    table(intersectionBorder, topBottomBorder, colWidth);
+
+    for (size_t i = 0; i < book.size(); i++)
+    {
+        std::cout << leftRightBorder
+                  << std::setfill(' ') << std::left << std::setw(13) << book[i]->getBookID() << leftRightBorder;
+            std::cout << std::endl;
+    }
+
+    table(intersectionBorder, topBottomBorder, colWidth);
+
+    drawPressAnyKey();
+}
+void drawPressAnyKey()
+{
+    std::cout << std::endl
+              << "Press any key to return to main menu";
+    std::cin.ignore();
+    std::cin.get();
+    std::cout << "Back to main menu" << std::endl
+              << std::endl;
+}
+void quit(const std::string &FILENAME)
+{
+    std::cout << "Bye Bye !!! See you soon." << std::endl;
+
+    // clear the memory
+    for (Book *v : book)
+    {
+        delete v;
+    }
+
+    book.clear();
+
+    delete[] BookDetails;
+    delete[] tmpDetails;
+
+    BookDetails = NULL;
+    tmpDetails = NULL;
+
+    exit(0);
 }

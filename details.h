@@ -9,6 +9,14 @@ struct details
     std::string address;
     std::string memberId;
 };
+struct Books
+{
+    std::string bookname;
+    std::string bookID;
+    std::string authorfirstname;
+    std::string authorlastname;
+    std::string bookType;
+};
 
 // Store details of a mmeber from Add member functionality
  struct addMembers

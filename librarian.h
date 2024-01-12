@@ -16,13 +16,13 @@ class Librarian : public Person
         Librarian(){} // default constructor
 
        // getter for staff ID
-       std::string getStaffID(){\
-           return staffID;\
-       }\
-       // getter for staff ID
-        std::string getStaffID();
+       std::string getStaffID()
+       {
+           return staffID;
+        }
        // setter for staff ID
         void setStaffID(std::string staffID);
+
         // getter for salary
         int getSalary();
         // setter for salary

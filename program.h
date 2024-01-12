@@ -29,22 +29,16 @@ void header(std::string header);
 //y/n choice
 bool choices(std::string &choice);
 //add member
-void addMember();
+void addMember(Person& person);
+void saveMemberToFile(Member& member,  Person& person, const string& filename);
+void displayMemberDetails(Member& member);  
 //issue a book to a member..choosen by booktypeid
 void issueBook();
 //return a book
 void returnBook(int bookID, int memberID);
 void displayBorrowedBooks(int memberID);
 void calcFine(int memberID);
-//check datatype
-void checkDetails(addMembers &addMembersObject);
-//check with existing member
-bool checkmember(addMembers &addMembersObject);
-//display member added
-void display(addMembers &addmembersObject, std::string name);
 
-//increase size of array
-bool appendArray(addMembers &addmembersObject);
 //new member asssign with array positions
 void positions(details *&Members, addMembers &addmembersObject);
 //check for bookid
@@ -52,15 +46,11 @@ bool checkBookId(std::string selectedBookid, std::string &bookCategory, int &boo
 //list all book types
 void listAll();
 // vector of person class
-void assignpersonArrayToVector();
+void BookArrayToVector();
 
 void table(char intersectionBorder, char topBottomBorder, int colWidth);
 
 
 void drawPressAnyKey();
-//quit option
-void quit(const std::string &FILENAME);
-
-void saveData(const std::string &FILENAME);
 
 #endif

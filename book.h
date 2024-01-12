@@ -1,14 +1,9 @@
 #ifndef _BOOK_H_
 #define _BOOK_H_
 
-#include "person.h"
 #include "member.h"
-#include <sstream>
-#include <vector>
-#include <ctime>
-
-
-class Book
+#include "person.h"
+class Book 
 {
 private:
     int bookID;
@@ -16,7 +11,7 @@ private:
     std::string authorFirstName;
     std::string authorLastName;
     std::string bookType;
-    std::time_t  dueDate;
+    time_t  dueDate;
     Member *borrower;
 
 public:
@@ -29,10 +24,10 @@ public:
     std::string getAuthorFirstName() { return authorFirstName; }
     std::string getAuthorLastName() { return authorLastName; }
 
-   std::time_t  getDueDate() { return dueDate; }
-    void setDueDate( std::time_t  dueDate);
+    time_t  getDueDate() { return dueDate; }
+    void setDueDate( time_t  dueDate);
 
-    void borrowBook(Member *borrower,  std::time_t  dueDate);
+    void borrowBook(Member *borrower,  time_t  dueDate);
 
 };
 #endif

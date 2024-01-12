@@ -9,6 +9,7 @@ Member::Member(std::string memberID, std::string name, std::string address,
 Member::Member(){}
 Member::Member(details *array) : Person(array)
 {
+    //set the detail about member
     setName(array->name);
     setAddress(array->address);
     setEmail(array->email);

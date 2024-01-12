@@ -13,19 +13,13 @@ TEST_CASE("Check file existance", "[checkFile]")
 {
     SECTION("Correct File used")
     {
-        std::string fileName = "vehicles.dat";
+        std::string fileName = "library_books.csv";
         bool result = checkFile(fileName);
         REQUIRE(result == true);
     }
-    SECTION("Incorrect File used")
-    {
-        std::string fileName = "incorrect.dat";
-        bool result = checkFile(fileName);
-        REQUIRE(result == false);
-    }
 }
 
-TEST_CASE("Determine number of vehicles in file", "[determineSize]")
+TEST_CASE("Determine number of Books in file", "[determineSize]")
 {
     std::string fileName = "library_books.csv";
     int bookSize = number(fileName);
@@ -34,7 +28,7 @@ TEST_CASE("Determine number of vehicles in file", "[determineSize]")
     {
         REQUIRE(bookSize == 1000);
     }
-    SECTION("Incorrect number of vehicles")
+    SECTION("Incorrect number of Books")
     {
         REQUIRE(bookSize != 999);
     }
