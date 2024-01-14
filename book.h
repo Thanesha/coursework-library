@@ -18,6 +18,8 @@ public:
  Book(int bookID, std::string bookName, std::string authorFirstName, std::string authorLastName) : bookID(bookID), bookName(bookName), authorFirstName(authorFirstName), authorLastName(authorLastName)
  {}
  Book(){}
+
+//getters and setter 
     int getBookID() { return bookID; }
     std::string getBookName() { return bookName; }
 

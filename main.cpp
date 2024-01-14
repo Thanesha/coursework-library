@@ -6,21 +6,7 @@
 
 
 using namespace std;
-int main(int argc, char *argv[])
-{
-       const std::string FILENAME = argv[1];
- // check if the file exists and load the book details from file
-    if (checkFile(FILENAME))
-    {   
-        size(FILENAME);
-        mainMenu(FILENAME);
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
-
+int main() {
     Member member;
     Person person;
     string filename = "member.txt";
@@ -31,5 +17,6 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+
 
 

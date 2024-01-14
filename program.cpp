@@ -19,6 +19,7 @@ Books *BookDetails;
 details *tmpDetails;
 
 std::vector<Book *> book;
+// Function to check if file exists
 bool checkFile(const std::string &FILENAME)
 {
     std::ifstream myFile(FILENAME);
@@ -35,6 +36,8 @@ bool checkFile(const std::string &FILENAME)
     }
 
 }
+// Function to get the number of books in the file
+
 void size(const std::string &FILENAME)
 {
     number(FILENAME);
@@ -42,6 +45,7 @@ void size(const std::string &FILENAME)
     loadFile(FILENAME);
 }
 
+// Display main menu
 void mainMenu(const std::string &FILENAME)
 {
     std::string option;
@@ -111,19 +115,7 @@ void header(std::string header)
     std::cout << "-------- " << header << " --------" << std::endl;
 };
 
-bool choice(std::string &choice)
-{
-    if (choice != "n" && choice != "y")
-    {
-        std::cout << "Wrong input. Enter y (YES) or n (NO)." << std::endl
-                  << std::endl;
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
+// Function to add a member
 void addMember(Person& person) {
     std::string name;
     std::string address;
@@ -142,7 +134,7 @@ void addMember(Person& person) {
     cin.ignore();
     getline(cin, memberID);
 }
-void saveMemberToFile(Member& member,  Person& person, const string& filename) {
+void saveMemberToFile(Member& member,  Person& person, std::string& filename) {
     ofstream outFile(filename);
     if (outFile.is_open()) {
         outFile << person.getName()<< endl;

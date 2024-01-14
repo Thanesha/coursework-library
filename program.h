@@ -30,7 +30,7 @@ void header(std::string header);
 bool choices(std::string &choice);
 //add member
 void addMember(Person& person);
-void saveMemberToFile(Member& member,  Person& person, const string& filename);
+void saveMemberToFile(Member& member,  Person& person, std::string &filename);
 void displayMemberDetails(Member& member);  
 //issue a book to a member..choosen by booktypeid
 void issueBook();
